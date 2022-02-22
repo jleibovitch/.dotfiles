@@ -50,7 +50,7 @@ export TERM=screen-256color
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -121,10 +121,10 @@ alias gpom="git pull -r origin main"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # hook direnv
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 
 # hook fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # load extra aliases
-for f in $ZSH_ALIASES/*.zsh; do source $f; done
+# for f in $ZSH_ALIASES/*.zsh; do source $f; done
