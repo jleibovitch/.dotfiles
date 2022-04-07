@@ -121,10 +121,14 @@ alias gpom="git pull -r origin main"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # hook direnv
-# eval "$(direnv hook zsh)"
+if ! command -v direnv &> /dev/null
+then
+  eval "$(direnv hook zsh)"
+fi
 
-# hook fzf
+# hook fzf 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # load extra aliases
-# for f in $ZSH_ALIASES/*.zsh; do source $f; done
+[ -d $ZSH_ALIASES ] && for f in $ZSH_ALIASES/*.zsh; do source $f; done
+
