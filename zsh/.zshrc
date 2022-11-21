@@ -114,7 +114,7 @@ export EDITOR='nvim'
 alias vim="nvim"
 alias pip="pip3"
 alias venv="virtualenv"
-alias gpom="git pull -r origin main"
+alias gpom="git pull -r origin $(git_main_branch)"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

@@ -98,3 +98,14 @@ require("lspconfig").rust_analyzer.setup(config())
     -- }
 -- }))
 
+--python
+require("lspconfig").pyright.setup(config())
+
+function file_exists(name)
+   local f=io.open(name,"r")
+   if f~=nil then io.close(f) return true else return false end
+end
+
+if file_exists("~/.config/nvim/lua/uber.lua") then
+    require("uber").load_lsp(config)
+end

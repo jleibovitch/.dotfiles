@@ -1,9 +1,11 @@
+
+" default plugins and vim config
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/config.vim
 
-" LSP
-source ~/.config/nvim/plug-config/lsp.lua " lsp server settings
-source ~/.config/nvim/plug-config/lsp.vim " lsp mappings
+" LSP config
+source $HOME/.config/nvim/plug-config/lsp.lua " lsp server settings
+source $HOME/.config/nvim/plug-config/lsp.vim " lsp mappings
 
 if (has('termguicolors'))
   set termguicolors
