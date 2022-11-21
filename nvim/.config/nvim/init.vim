@@ -1,13 +1,11 @@
 
+" default plugins and vim config
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/config.vim
 
-" LSP
-" source ~/.config/nvim/plug-config/lsp-config.vim
-" luafile ~/.config/nvim/plug-config/compe-config.lua
-" luafile ~/.config/nvim/plug-config/gopls-config.lua
-" coc
-source $HOME/.config/nvim/plug-config/coc.vim
+" LSP config
+source $HOME/.config/nvim/plug-config/lsp.lua " lsp server settings
+source $HOME/.config/nvim/plug-config/lsp.vim " lsp mappings
 
 if (has('termguicolors'))
   set termguicolors
@@ -15,6 +13,15 @@ endif
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
+endfunction
+
+" Statusline
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
 endfunction
 
 let g:onedark_hide_endofbuffer = 1
@@ -25,11 +32,13 @@ colorscheme onedark
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \   'left': [ [ 'mode', 'paste' ], ['readonly', 'filename', 'modified'],  ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent', 'ts' ],
+      \              [ 'lspstatus', 'fileformat', 'fileencoding', 'filetype'] ]
       \ },
       \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
+      \   'lspstatus': 'LspStatus',
       \ },
       \ }
+
