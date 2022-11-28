@@ -15,13 +15,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd([[packadd packer.nvim]])
 end
 
+-- disabled for now, autosave does not play well
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+-- vim.cmd([[
+--  augroup packer_user_config
+--    autocmd!
+--    autocmd BufLeave plugins.lua source <afile> | PackerSync
+--  augroup end
+-- ]])
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -40,19 +41,24 @@ packer.init({
 
 return packer.startup(function(use)
     -- let packer manage itself
-    use("wbthomason/packer.nvim")
+    use('wbthomason/packer.nvim')
 
     -- theme related (look and feel)
-    use('navarasu/onedark.nvim')
+    use('jleibovitch/onedark.nvim') -- TODO: revert to non-forked when bug is fixed
     use('nvim-tree/nvim-web-devicons')
     use('nvim-lualine/lualine.nvim')
-    use('akinsho/bufferline.nvim', { tag = "v3.*" })
+    use({'akinsho/bufferline.nvim', tag = 'v3.*' })
     use('lewis6991/gitsigns.nvim')
+    use({'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}) -- better folding
+    use('NvChad/nvim-colorizer.lua')
+    use('lukas-reineke/indent-blankline.nvim') -- indent indicators
+    use('goolord/alpha-nvim') -- greeter
 
     -- tree and file search
     use('nvim-tree/nvim-tree.lua')
     use('nvim-lua/plenary.nvim')
-    use('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
+    use({'nvim-telescope/telescope.nvim', branch = '0.1.x' })
+    use('ahmedkhalf/project.nvim')
 
     -- Intellisense / completion
     use('neovim/nvim-lspconfig')
@@ -63,11 +69,10 @@ return packer.startup(function(use)
     use('hrsh7th/nvim-cmp')
     use('hrsh7th/cmp-nvim-lua')
     use('nvim-lua/lsp_extensions.nvim')
-    -- use('nvim-lua/lsp-status.nvim')
 
     -- treesitter
-    use("nvim-treesitter/nvim-treesitter", {
-        run = ":TSUpdate"
+    use({'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
     })
     use('nvim-treesitter/nvim-treesitter-context')
 
@@ -80,13 +85,17 @@ return packer.startup(function(use)
     use('pocco81/auto-save.nvim')
     
     -- tpope
-    use('tpope/vim-commentary')
+    use('numToStr/Comment.nvim')   
+    -- use('tpope/vim-commentary')
     use('tpope/vim-fugitive')
     use('tpope/vim-surround')
+
+    -- performance
+    use('lewis6991/impatient.nvim')
 
     -- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
-		require("packer").sync()
+		require('packer').sync()
 	end
 end)

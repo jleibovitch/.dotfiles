@@ -1,5 +1,6 @@
 
 local onedark = require('onedark')
+local onedark_colors = require('onedark.palette')
 -- setup onedark
 onedark.setup {
     -- Main options --
@@ -25,7 +26,9 @@ onedark.setup {
 
     -- Custom Highlights --
     colors = {}, -- Override default colors
-    highlights = {}, -- Override highlight groups
+    highlights = {
+        Error = onedark_colors.red
+    }, -- Override highlight groups
 
     -- Plugins Config --
     diagnostics = {
@@ -77,4 +80,9 @@ require('lualine').setup {
   extensions = {}
 }
 
+require('colorizer').setup()
+require("indent_blankline").setup({
+    show_current_context = true,
+    -- show_current_context_start = true,
+})
 

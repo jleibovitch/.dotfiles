@@ -29,7 +29,13 @@ local options = {
     incsearch = true,
     termguicolors = true,
     showmode = false,                           -- we don't need to see things like -- INSERT -- anymore
-    inccommand = "split"
+    inccommand = "split",
+    fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
+    foldcolumn = '1',
+    foldlevel = 99,
+    foldlevelstart = 99,
+    foldenable = true,                          -- disable folding at startup
+    foldnestmax = 0
 }
 
 for k, v in pairs(options) do
