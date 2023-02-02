@@ -44,7 +44,7 @@ return packer.startup(function(use)
     use('wbthomason/packer.nvim')
 
     -- theme related (look and feel)
-    use('jleibovitch/onedark.nvim') -- TODO: revert to non-forked when bug is fixed
+    use('navarasu/onedark.nvim')
     use('nvim-tree/nvim-web-devicons')
     use('nvim-lualine/lualine.nvim')
     use({'akinsho/bufferline.nvim', tag = 'v3.*' })
@@ -53,6 +53,8 @@ return packer.startup(function(use)
     use('NvChad/nvim-colorizer.lua')
     use('lukas-reineke/indent-blankline.nvim') -- indent indicators
     use('goolord/alpha-nvim') -- greeter
+    use({'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'}) -- floating code actions menu
+    use("folke/which-key.nvim")
 
     -- tree and file search
     use('nvim-tree/nvim-tree.lua')

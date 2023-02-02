@@ -37,9 +37,18 @@ local function config(_config)
         }, _config or {})
 end
 
+
 local lspconfig = require('lspconfig')
+
+-- if module is set, load and use that config instead
+local ok, uber = pcall(require, 'uber.lsp')
+if ok then
+    uber.setup_lsp(config)
+else
+    --python
+    lspconfig.pyright.setup(config())
+end
+
+
 -- rust
 lspconfig.rust_analyzer.setup(config())
-
---python
-lspconfig.pyright.setup(config())
