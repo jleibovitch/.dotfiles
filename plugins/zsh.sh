@@ -22,8 +22,6 @@ else
     echo "Oh My Zsh is already installed. Skipping installation."
 fi
 
-# Now, install a popular plugin. We'll use zsh-autosuggestions as an example.
-# We'll check if the directory already exists to avoid re-cloning.
 echo ""
 echo "Installing zsh-autosuggestions..."
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
@@ -31,6 +29,16 @@ if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]
     echo "zsh-autosuggestions installed successfully."
 else
     echo "zsh-autosuggestions is already installed. Skipping."
+fi
+
+
+echo ""
+echo "Installing zsh-syntax-highlighting..."
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+    echo "zsh-syntax-highlighting installed successfully."
+else
+    echo "zsh-syntax-highlighting is already installed. Skipping."
 fi
 
 echo ""

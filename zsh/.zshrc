@@ -15,15 +15,15 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-
-# Hook into starship.rs
-eval "$(starship init zsh)"
-
+export EDITOR="nvim"
 
 # OMZ setup
 # ======
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME=""
+
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -39,6 +39,11 @@ export ZSH="$HOME/.oh-my-zsh"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
+
+plugins=(
+    git 
+    zsh-autosuggestions
+)
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
@@ -48,3 +53,13 @@ ENABLE_CORRECTION="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # =====
+#
+
+# startup oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# Hook into starship.rs
+eval "$(starship init zsh)"
+
+# setup aliases
+[[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
